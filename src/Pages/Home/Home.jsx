@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import "./home.css";
+
 import Button from "@mui/material/Button";
 import CustomHeader from "../../Components/CustomHeader/CustomHeader";
 import CustomButton from "../../Components/CustomButton/CustomButton";
@@ -8,8 +10,8 @@ const Home = () => {
   const [currentVariant, setCurrentVariant] = useState("contained");
 
   return (
-    <div>
-      <CustomHeader />
+    <div className="container">
+      <CustomHeader tipoHeader="h1" texto="To Do List" />
       <Button
         variant={currentVariant}
         onClick={() =>
@@ -20,7 +22,7 @@ const Home = () => {
       >
         MUI Button: Set Outlined
       </Button>
-      <CustomButton name="BestDayEver"/>
+      <CustomButton name="BestDayEver" />
     </div>
   );
 };
