@@ -1,29 +1,33 @@
-import { useState } from "react";
 
 import "./home.css";
 
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import CustomHeader from "../../Components/CustomHeader/CustomHeader";
-import CustomButton from "../../Components/CustomButton/CustomButton";
+import Container from "@mui/material/Container";
+import TextField from "@mui/material/TextField";
 
 const Home = () => {
-  const [currentVariant, setCurrentVariant] = useState("contained");
-
   return (
-    <div className="container">
-      <CustomHeader tipoHeader="h1" texto="To Do List" />
-      <Button
-        variant={currentVariant}
-        onClick={() =>
-          setCurrentVariant((oldV) =>
-            oldV === "contained" ? "outlined" : "contained"
-          )
-        }
-      >
-        MUI Button: Set Outlined
+    <Container className="container">
+      <Box className="container2">
+        <TextField
+          id="inp-descrip"
+          label="Descrição"
+          variant="outlined"
+          sx={{ width: "89%", marginRight: 1 }}
+        />
+        <TextField
+          id="inp-prio"
+          label="Prioridade"
+          variant="outlined"
+          type="number"
+          sx={{width: '10%'}}
+        />
+      </Box>
+      <Button variant="contained" fullWidth={true} sx={{marginTop: '1rem'}}>
+        Adicionar
       </Button>
-      <CustomButton name="BestDayEver" />
-    </div>
+    </Container>
   );
 };
 
