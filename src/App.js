@@ -1,3 +1,5 @@
+import { CustomButton, CustomInput } from "../public/components";
+
 function App() {
   return (
     <did>
