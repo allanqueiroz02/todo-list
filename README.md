@@ -6,3 +6,8 @@ Yes, it's a todo list, again :]
 
 . ReactJS
 . Styled components
+
+### Planos para futuro:
+
+. Adicionar ts;
+. Adicionar testes;
