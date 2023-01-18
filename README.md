@@ -9,5 +9,5 @@ Yes, it's a todo list, again :]
 
 ## Planos para futuro:
 
-- - [ ] Adicionar ts;
-- - [ ] Adicionar testes;
+- [ ] Adicionar ts;
+- [ ] Adicionar testes;
