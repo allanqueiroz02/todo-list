@@ -1,13 +1,23 @@
 import styled from "styled-components";
 
-const StyledList = styled.li``;
+const StyledList = styled.ul`
+  border: 1px solid #ffff00;
+  padding: 20px;
+`;
 
-const StyledItemList = styled.ul``;
+const StyledListItem = styled.li`
+  list-style-type: none;
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #ff00ff;
+`;
 
-function CustomList() {
+function CustomList({ list }) {
   return (
     <StyledList>
-      <StyledItemList />
+      {list.map((item) => (
+        <StyledListItem key={item}>{item}</StyledListItem>
+      ))}
     </StyledList>
   );
 }

@@ -12,9 +12,20 @@ const StyledButton = styled.button`
   }
 `;
 
-function CustomButton({ children, onClick, disabled = false, title }) {
+function CustomButton({
+  children,
+  onClick,
+  disabled = false,
+  title,
+  ...others
+}) {
   return (
-    <StyledButton disabled={disabled} onClick={onClick} title={title}>
+    <StyledButton
+      disabled={disabled}
+      onClick={onClick}
+      title={title}
+      {...others}
+    >
       {children}
     </StyledButton>
   );
