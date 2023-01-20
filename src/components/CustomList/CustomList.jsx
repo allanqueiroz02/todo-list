@@ -1,15 +1,19 @@
 import styled from "styled-components";
 
 const StyledList = styled.ul`
-  border: 1px solid #ffff00;
+  list-style-type: "😎";
   padding: 20px;
+  border: 1px solid #ffff00;
 `;
 
 const StyledListItem = styled.li`
-  list-style-type: none;
   padding: 10px;
   margin: 5px;
+  border-radius: 3px;
   border: 1px solid #ff00ff;
+  :hover {
+    background-color: #cfcfcf;
+  }
 `;
 
 function CustomList({ list }) {
