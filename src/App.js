@@ -1,7 +1,13 @@
+import { useCallback, useState } from "react";
 import styled from "styled-components";
 
 import "./globalStyle.css";
-import { CustomButton, CustomInput, CustomTitle } from "./components";
+import {
+  CustomButton,
+  CustomInput,
+  CustomList,
+  CustomTitle,
+} from "./components";
 
 const Container = styled.div`
   max-width: 80%;
@@ -20,13 +26,39 @@ const ContainerContent = styled.div`
 `;
 
 function App() {
+  const [item, setItem] = useState("");
+  const [list, setList] = useState([]);
+
+  const handleChange = useCallback((e) => setItem(e.target.value), []);
+
+  const handleEnterPress = useCallback(
+    (e) => {
+      if (e.key === "Enter") {
+        setList((oldValue) => [...oldValue, item]);
+        setItem("");
+      }
+    },
+    [item]
+  );
+
+  const handleAddToList = useCallback(() => {
+    setList((oldValue) => [...oldValue, item]);
+    setItem("");
+  }, [item]);
+
   return (
     <Container>
       <CustomTitle text="To-do list" title="um cabeçalho" />
       <ContainerContent>
-        <CustomInput placeholder="Informe o item que deseja adicionar ao to-do" />
-        <CustomButton>Adicionar</CustomButton>
+        <CustomInput
+          value={item}
+          onChange={handleChange}
+          onKeyDown={handleEnterPress}
+          placeholder="Informe o item que deseja adicionar ao to-do"
+        />
+        <CustomButton onClick={handleAddToList}>Adicionar</CustomButton>
       </ContainerContent>
+      <CustomList list={list} />
     </Container>
   );
 }
