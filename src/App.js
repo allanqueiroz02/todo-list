@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 
 import "./globalStyle.css";
@@ -31,20 +31,33 @@ function App() {
 
   const handleChange = useCallback((e) => setItem(e.target.value), []);
 
+  const addToLocalStorage = useCallback(() => {
+    console.log(">", list);
+    if (list?.length)
+      localStorage.setItem("listagem", JSON.stringify([...list]));
+  }, [list]);
+
   const handleEnterPress = useCallback(
     (e) => {
       if (e.key === "Enter") {
         setList((oldValue) => [...oldValue, item]);
         setItem("");
+        addToLocalStorage();
       }
     },
-    [item]
+    [addToLocalStorage, item]
   );
 
   const handleAddToList = useCallback(() => {
     setList((oldValue) => [...oldValue, item]);
     setItem("");
-  }, [item]);
+    addToLocalStorage();
+  }, [addToLocalStorage, item]);
+
+  useEffect(() => {
+    const listLocalStorage = JSON.parse(localStorage.getItem("listagem"));
+    if (listLocalStorage) setList(listLocalStorage);
+  }, []);
 
   return (
     <Container>
