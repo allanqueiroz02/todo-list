@@ -31,28 +31,24 @@ function App() {
 
   const handleChange = useCallback((e) => setItem(e.target.value), []);
 
-  const addToLocalStorage = useCallback(() => {
-    console.log(">", list);
-    if (list?.length)
-      localStorage.setItem("listagem", JSON.stringify([...list]));
-  }, [list]);
-
   const handleEnterPress = useCallback(
     (e) => {
       if (e.key === "Enter") {
         setList((oldValue) => [...oldValue, item]);
         setItem("");
-        addToLocalStorage();
       }
     },
-    [addToLocalStorage, item]
+    [item]
   );
 
   const handleAddToList = useCallback(() => {
     setList((oldValue) => [...oldValue, item]);
     setItem("");
-    addToLocalStorage();
-  }, [addToLocalStorage, item]);
+  }, [item]);
+
+  useEffect(() => {
+    if (list?.length) localStorage.setItem("listagem", JSON.stringify(list));
+  }, [list]);
 
   useEffect(() => {
     const listLocalStorage = JSON.parse(localStorage.getItem("listagem"));
