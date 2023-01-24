@@ -13,7 +13,6 @@ const Container = styled.div`
   max-width: 80%;
   padding: 10px;
   margin: 0px auto;
-  /* border: 1px solid red; */
   background-color: #698264;
   border-radius: 0 15px 15px 15px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -29,22 +28,19 @@ function App() {
   const [item, setItem] = useState("");
   const [list, setList] = useState([]);
 
-  const handleChange = useCallback((e) => setItem(e.target.value), []);
+  const handleChange = useCallback((e) => setItem(e.target.value), [setItem]);
 
-  const handleEnterPress = useCallback(
-    (e) => {
-      if (e.key === "Enter") {
-        setList((oldValue) => [...oldValue, item]);
-        setItem("");
-      }
-    },
-    [item]
-  );
-
-  const handleAddToList = useCallback(() => {
+  const updateList = useCallback(() => {
     setList((oldValue) => [...oldValue, item]);
     setItem("");
   }, [item]);
+
+  const handleEvents = useCallback(
+    (e) => {
+      if (e.key === "Enter" || e.type === "click") updateList();
+    },
+    [updateList]
+  );
 
   useEffect(() => {
     if (list?.length) localStorage.setItem("listagem", JSON.stringify(list));
@@ -62,10 +58,10 @@ function App() {
         <CustomInput
           value={item}
           onChange={handleChange}
-          onKeyDown={handleEnterPress}
+          onKeyDown={handleEvents}
           placeholder="Informe o item que deseja adicionar ao to-do"
         />
-        <CustomButton onClick={handleAddToList}>Adicionar</CustomButton>
+        <CustomButton onClick={handleEvents}>Adicionar</CustomButton>
       </ContainerContent>
       <CustomList list={list} />
     </Container>
