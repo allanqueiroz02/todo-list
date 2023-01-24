@@ -20,7 +20,9 @@ function CustomList({ list }) {
   return (
     <StyledList>
       {list.map((item) => (
-        <StyledListItem key={item}>{item}</StyledListItem>
+        <StyledListItem key={`${item}${Math.random() * 50}`}>
+          {item}
+        </StyledListItem>
       ))}
     </StyledList>
   );
