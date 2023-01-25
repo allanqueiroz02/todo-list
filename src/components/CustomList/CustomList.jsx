@@ -36,6 +36,8 @@ function CustomList({ list, setList }) {
     (indexItem) => {
       const updatedList = list.filter((_, index) => index !== indexItem);
       setList(updatedList);
+      if (!updatedList?.length)
+        localStorage.setItem("listagem", JSON.stringify([]));
     },
     [list, setList]
   );
