@@ -49,7 +49,7 @@ function App() {
   useEffect(() => {
     const listLocalStorage = JSON.parse(localStorage.getItem("listagem"));
     if (listLocalStorage) setList(listLocalStorage);
-  }, []);
+  }, [setList]);
 
   return (
     <Container>
@@ -63,7 +63,7 @@ function App() {
         />
         <CustomButton onClick={handleEvents}>Adicionar</CustomButton>
       </ContainerContent>
-      <CustomList list={list} />
+      <CustomList list={list} setList={setList} />
     </Container>
   );
 }
