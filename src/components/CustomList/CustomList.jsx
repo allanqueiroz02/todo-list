@@ -1,9 +1,10 @@
+import { useCallback } from "react";
 import styled from "styled-components";
 import deleteIcon from "../../assets/delete.png";
-import { useCallback } from "react";
+import doneIcon from "../../assets/done.png";
 
 const StyledList = styled.ul`
-  list-style-type: "😎";
+  list-style-type: none;
   padding: 20px;
   border: 1px solid #ffff00;
 `;
@@ -22,6 +23,7 @@ const StyledImg = styled.img`
   width: 25px;
   height: 25px;
   padding: 3px;
+  margin: 3px;
   background-color: #f1f1f1;
   border-radius: 50%;
   opacity: 0.8;
@@ -44,17 +46,27 @@ function CustomList({ list, setList }) {
 
   return (
     <StyledList>
-      {list.map((item, index) => (
+      {list.map((itemList, indexItem) => (
         <div
-          style={{ display: "flex", alignItems: "center" }}
-          key={`${item}${Math.random() * 50}`}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-evenly",
+          }}
+          key={`${itemList}${Math.random() * 50}`}
         >
-          <StyledListItem style={{ width: "98%" }}>{item}</StyledListItem>
+          <StyledListItem style={{ width: "90%" }}>{itemList}</StyledListItem>
           <StyledImg
             src={deleteIcon}
             alt="delete icon"
-            title={`Clique aqui para remover ${list[index]} da listagem`}
-            onClick={() => handleDelete(index)}
+            title={`Clique aqui para remover ${list[indexItem]} da listagem`}
+            onClick={() => handleDelete(indexItem)}
+          />
+          <StyledImg
+            src={doneIcon}
+            alt="done icon"
+            title={`Clique aqui para marcar como feito`}
+            onClick={() => console.log("DONE ->", list[indexItem])}
           />
         </div>
       ))}
