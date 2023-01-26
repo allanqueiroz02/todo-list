@@ -9,6 +9,8 @@ import {
   CustomTitle,
 } from "./components";
 
+import clearIcon from "./assets/clear.png";
+
 const Container = styled.div`
   max-width: 80%;
   padding: 10px;
@@ -22,6 +24,26 @@ const ContainerContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const Box = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const StyledClearIcon = styled.img`
+  width: 25px;
+  height: 25px;
+  padding: 3px;
+  margin: 3px;
+  background-color: #f1f1f1;
+  border-radius: 50%;
+  opacity: 0.8;
+  :hover {
+    opacity: 1;
+    cursor: pointer;
+  }
 `;
 
 function App() {
@@ -42,6 +64,11 @@ function App() {
     [updateList]
   );
 
+  const handleClear = () => {
+    localStorage.setItem("listagem", JSON.stringify([]));
+    setList([]);
+  };
+
   useEffect(() => {
     if (list?.length) localStorage.setItem("listagem", JSON.stringify(list));
   }, [list]);
@@ -53,7 +80,16 @@ function App() {
 
   return (
     <Container>
-      <CustomTitle text="To-do list" title="um cabeçalho" />
+      <Box>
+        <CustomTitle text="To-do list" title="um cabeçalho" />
+        <StyledClearIcon
+          src={clearIcon}
+          alt="delete icon"
+          title={`Clique aqui para limpar toda lista`}
+          onClick={handleClear}
+        />
+      </Box>
+
       <ContainerContent>
         <CustomInput
           value={item}
