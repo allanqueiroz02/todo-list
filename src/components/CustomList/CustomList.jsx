@@ -6,14 +6,16 @@ import doneIcon from "../../assets/done.png";
 const StyledList = styled.ul`
   list-style-type: none;
   padding: 20px;
-  border: 1px solid #ffff00;
+  /* border: 1px solid #ffff00; */
 `;
 
 const StyledListItem = styled.li`
   padding: 10px;
   margin: 5px;
   border-radius: 3px;
-  border: 1px solid #ff00ff;
+  border: none;
+  border-bottom: 3px solid #f1f1f1;
+  border-left: 3px solid #f1f1f1;
   :hover {
     background-color: #cfcfcf;
   }
@@ -24,16 +26,16 @@ const StyledImg = styled.img`
   height: 25px;
   padding: 3px;
   margin: 3px;
-  background-color: #f1f1f1;
+  background-color: #e9e6e6;
   border-radius: 50%;
-  opacity: 0.8;
+  opacity: 0.6;
   :hover {
     opacity: 1;
     cursor: pointer;
   }
 `;
 
-function CustomList({ list, setList }) {
+function CustomList({ list, setList, setDoneList }) {
   const handleDelete = useCallback(
     (indexItem) => {
       const updatedList = list.filter((_, index) => index !== indexItem);
@@ -42,6 +44,20 @@ function CustomList({ list, setList }) {
         localStorage.setItem("listagem", JSON.stringify([]));
     },
     [list, setList]
+  );
+
+  const handleDoneClick = useCallback(
+    (indexItem) => {
+      const addToDoneList = list.filter((_, index) => index === indexItem);
+      setDoneList((oldV) => [...oldV, addToDoneList]);
+
+      const removeFromList = list.filter((_, index) => index !== indexItem);
+      setList(removeFromList);
+
+      if (!removeFromList?.length)
+        localStorage.setItem("listagem", JSON.stringify([]));
+    },
+    [list, setDoneList, setList]
   );
 
   return (
@@ -59,14 +75,14 @@ function CustomList({ list, setList }) {
           <StyledImg
             src={deleteIcon}
             alt="delete icon"
-            title={`Clique aqui para remover ${list[indexItem]} da listagem`}
+            title={`Remover ${list[indexItem]} da listagem`}
             onClick={() => handleDelete(indexItem)}
           />
           <StyledImg
             src={doneIcon}
             alt="done icon"
-            title={`Clique aqui para marcar como feito`}
-            onClick={() => console.log("DONE ->", list[indexItem])}
+            title={`Marcar como feito`}
+            onClick={() => handleDoneClick(indexItem)}
           />
         </div>
       ))}

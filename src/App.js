@@ -4,6 +4,7 @@ import styled from "styled-components";
 import "./globalStyle.css";
 import {
   CustomButton,
+  CustomDoneList,
   CustomInput,
   CustomList,
   CustomTitle,
@@ -49,6 +50,7 @@ const StyledClearIcon = styled.img`
 function App() {
   const [item, setItem] = useState("");
   const [list, setList] = useState([]);
+  const [doneList, setDoneList] = useState([]);
 
   const handleChange = useCallback((e) => setItem(e.target.value), [setItem]);
 
@@ -99,7 +101,14 @@ function App() {
         />
         <CustomButton onClick={handleEvents}>Adicionar</CustomButton>
       </ContainerContent>
-      <CustomList list={list} setList={setList} />
+      <CustomTitle text="Para fazer" title="itens para finalizar" as="h3" />
+      {list.length ? (
+        <CustomList list={list} setList={setList} setDoneList={setDoneList} />
+      ) : (
+        <h3>Não há itens na lista</h3>
+      )}
+      <CustomTitle text="Concluídos" title="itens finalizados" as="h3" />
+      <CustomDoneList doneList={doneList} setDoneList={setDoneList} />
     </Container>
   );
 }
