@@ -80,6 +80,18 @@ function App() {
     if (listLocalStorage) setList(listLocalStorage);
   }, [setList]);
 
+  useEffect(() => {
+    if (doneList?.length)
+      localStorage.setItem("listagemConcluida", JSON.stringify(doneList));
+  }, [doneList]);
+
+  useEffect(() => {
+    const doneListLocalStorage = JSON.parse(
+      localStorage.getItem("listagemConcluida")
+    );
+    if (doneListLocalStorage) setDoneList(doneListLocalStorage);
+  }, [setDoneList]);
+
   return (
     <Container>
       <Box>
@@ -87,7 +99,7 @@ function App() {
         <StyledClearIcon
           src={clearIcon}
           alt="delete icon"
-          title={`Clique aqui para limpar toda lista`}
+          title={`Limpar listagem`}
           onClick={handleClear}
         />
       </Box>
@@ -105,10 +117,14 @@ function App() {
       {list.length ? (
         <CustomList list={list} setList={setList} setDoneList={setDoneList} />
       ) : (
-        <h3>Não há itens na lista</h3>
+        <h4>Não há itens na lista</h4>
       )}
       <CustomTitle text="Concluídos" title="itens finalizados" as="h3" />
-      <CustomDoneList doneList={doneList} setDoneList={setDoneList} />
+      {doneList.length ? (
+        <CustomDoneList doneList={doneList} setDoneList={setDoneList} />
+      ) : (
+        <h4>Não há itens Concluídos</h4>
+      )}
     </Container>
   );
 }
