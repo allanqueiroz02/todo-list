@@ -8,6 +8,12 @@ Yes, it's a todo list, again :]
 - Styled components
 - Localstorage
 
+## Para adicionar:
+
+- [ ] useContext;
+- [ ] proptypes;
+- [ ] Refatorar lógicas e componentes;
+
 ## Planos para futuro:
 
 - [ ] Adicionar ts;
