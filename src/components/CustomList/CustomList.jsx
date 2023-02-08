@@ -6,7 +6,6 @@ import doneIcon from "../../assets/done.png";
 const StyledList = styled.ul`
   list-style-type: none;
   padding: 20px;
-  /* border: 1px solid #ffff00; */
 `;
 
 const StyledListItem = styled.li`
@@ -49,7 +48,8 @@ function CustomList({ list, setList, setDoneList }) {
   const handleDoneClick = useCallback(
     (indexItem) => {
       const addToDoneList = list.filter((_, index) => index === indexItem);
-      setDoneList((oldV) => [...oldV, addToDoneList]);
+      console.log(">", addToDoneList);
+      setDoneList((oldV) => [...oldV, ...addToDoneList]);
 
       const removeFromList = list.filter((_, index) => index !== indexItem);
       setList(removeFromList);
