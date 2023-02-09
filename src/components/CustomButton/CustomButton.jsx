@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
@@ -30,5 +31,14 @@ function CustomButton({
     </StyledButton>
   );
 }
+
+CustomButton.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+    .isRequired,
+  onClick: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
+  title: PropTypes.string,
+  others: PropTypes.object,
+};
 
 export default CustomButton;
