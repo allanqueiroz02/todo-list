@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const StyledInput = styled.input`
   width: 100%;
@@ -29,5 +30,13 @@ function CustomInput({
     />
   );
 }
+
+CustomInput.propTypes = {
+  type: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  placeholder: PropTypes.string,
+  others: PropTypes.object,
+};
 
 export default CustomInput;

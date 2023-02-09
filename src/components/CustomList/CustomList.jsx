@@ -1,5 +1,7 @@
 import { useCallback } from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
+
 import deleteIcon from "../../assets/delete.png";
 import doneIcon from "../../assets/done.png";
 
@@ -88,5 +90,11 @@ function CustomList({ list, setList, setDoneList }) {
     </StyledList>
   );
 }
+
+CustomList.propTypes = {
+  list: PropTypes.array,
+  setList: PropTypes.func,
+  setDoneList: PropTypes.func,
+};
 
 export default CustomList;
