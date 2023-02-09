@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import undoIcon from "../../assets/undo.png";
+import PropTypes from "prop-types";
 
 const StyledList = styled.ul`
   list-style-type: none;
@@ -56,5 +57,10 @@ function CustomDoneList({ doneList, setDoneList }) {
     </StyledList>
   );
 }
+
+CustomDoneList.propTypes = {
+  doneList: PropTypes.array,
+  setDoneList: PropTypes.func,
+};
 
 export default CustomDoneList;
