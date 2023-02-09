@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import undoIcon from "../../assets/undo.png";
 import PropTypes from "prop-types";
+
+import undoIcon from "../../assets/undo.png";
 
 const StyledList = styled.ul`
   list-style-type: none;
