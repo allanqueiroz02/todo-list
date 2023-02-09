@@ -48,7 +48,6 @@ function CustomList({ list, setList, setDoneList }) {
   const handleDoneClick = useCallback(
     (indexItem) => {
       const addToDoneList = list.filter((_, index) => index === indexItem);
-      console.log(">", addToDoneList);
       setDoneList((oldV) => [...oldV, ...addToDoneList]);
 
       const removeFromList = list.filter((_, index) => index !== indexItem);
