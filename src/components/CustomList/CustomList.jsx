@@ -76,7 +76,7 @@ function CustomList({ list, setList, setDoneList }) {
           <StyledImg
             src={deleteIcon}
             alt="delete icon"
-            title={`Remover ${list[indexItem]} da listagem`}
+            title={`Remover "${list[indexItem]}" da listagem`}
             onClick={() => handleDelete(indexItem)}
           />
           <StyledImg
