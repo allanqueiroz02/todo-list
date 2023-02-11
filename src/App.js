@@ -121,7 +121,11 @@ function App() {
       )}
       <CustomTitle text="Concluídos" title="itens finalizados" as="h3" />
       {doneList.length ? (
-        <CustomDoneList doneList={doneList} setDoneList={setDoneList} />
+        <CustomDoneList
+          doneList={doneList}
+          setDoneList={setDoneList}
+          setList={setList}
+        />
       ) : (
         <h4>Não há itens Concluídos</h4>
       )}

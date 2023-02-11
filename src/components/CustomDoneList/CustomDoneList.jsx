@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
@@ -34,7 +35,19 @@ const StyledImg = styled.img`
   }
 `;
 
-function CustomDoneList({ doneList, setDoneList }) {
+function CustomDoneList({ doneList, setDoneList, setList }) {
+  const handleReturnItem = useCallback(
+    (indexItem) => {
+      const removeFromDoneList = doneList.filter(
+        (_, index) => index !== indexItem
+      );
+      setDoneList(removeFromDoneList);
+
+      const addToList = doneList.filter((_, index) => index === indexItem);
+      setList((oldV) => [...oldV, ...addToList]);
+    },
+    [doneList, setDoneList, setList]
+  );
   return (
     <StyledList>
       {doneList.map((itemList, indexItem) => (
@@ -51,7 +64,7 @@ function CustomDoneList({ doneList, setDoneList }) {
             src={undoIcon}
             alt="undo icon"
             title={`Mover ${doneList[indexItem]} para cima`}
-            onClick={() => console.log("Subiu o item")}
+            onClick={() => handleReturnItem(indexItem)}
           />
         </div>
       ))}
@@ -62,6 +75,7 @@ function CustomDoneList({ doneList, setDoneList }) {
 CustomDoneList.propTypes = {
   doneList: PropTypes.array,
   setDoneList: PropTypes.func,
+  setList: PropTypes.func,
 };
 
 export default CustomDoneList;
