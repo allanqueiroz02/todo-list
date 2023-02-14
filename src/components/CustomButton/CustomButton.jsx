@@ -5,13 +5,17 @@ const StyledButton = styled.button`
   width: 100%;
   padding: 10px;
   margin: 13px;
-  opacity: 0.6;
+  opacity: 0.55;
   letter-spacing: 1.5px;
   font-weight: bold;
+  border: none;
+  border-radius: 3px;
 
   :hover {
     cursor: pointer;
     opacity: 1;
+    border: none;
+    background-color: #fff;
   }
 `;
 

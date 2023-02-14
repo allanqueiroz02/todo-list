@@ -6,10 +6,10 @@ const StyledInput = styled.input`
   padding: 18px;
   border-radius: 4px;
   border: none;
-  border-left: 5px solid #698264;
+  border-left: 5px solid #9eb19a;
   :focus {
     outline: none;
-    border-left: 5px solid #000000;
+    border-left: 5px solid #698264;
   }
 `;
 
