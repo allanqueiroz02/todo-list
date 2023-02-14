@@ -11,7 +11,7 @@ Yes, it's a todo list, again :]
 ## Para adicionar:
 
 - [ ] useContext;
-- [ ] proptypes;
+- [x] proptypes;
 - [ ] Refatorar lógicas e componentes;
 
 ## Planos para futuro:
