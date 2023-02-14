@@ -16,7 +16,7 @@ const Container = styled.div`
   max-width: 80%;
   padding: 10px;
   margin: 0px auto;
-  background-color: #698264;
+  background-color: #829b7d;
   border-radius: 0 15px 15px 15px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 `;
@@ -61,9 +61,10 @@ function App() {
 
   const handleEvents = useCallback(
     (e) => {
-      if (e.key === "Enter" || e.type === "click") updateList();
+      if ((e.key === "Enter" || e.type === "click") && item !== "")
+        updateList();
     },
-    [updateList]
+    [item, updateList]
   );
 
   const handleClear = () => {
@@ -111,7 +112,7 @@ function App() {
           onKeyDown={handleEvents}
           placeholder="Informe o item que deseja adicionar ao to-do"
         />
-        <CustomButton onClick={handleEvents}>Adicionar</CustomButton>
+        <CustomButton onClick={handleEvents}>ADICIONAR</CustomButton>
       </ContainerContent>
       <CustomTitle text="Para fazer" title="itens para finalizar" as="h3" />
       {list.length ? (
